@@ -60,4 +60,7 @@
     <data name="WatermarkFontFamily_Label" xml:space="preserve">
         <value>Шрифт:</value>
     </data>
+    <data name="WatermarkAlignment_Label" xml:space="preserve">
+        <value>Выравнивание:</value>
+    </data>
 </root>

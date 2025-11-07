@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Avalonia;
+using Avalonia.Layout;
 using Avalonia.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace Watermarked.ViewModels;
 
@@ -32,4 +35,15 @@ public partial class WatermarkSettingsViewModel : ViewModelBase
         
         _selectedFontFamily = SystemFonts.FirstOrDefault() ?? FontFamily.Default;
     }
+    
+    [ObservableProperty]
+    private HorizontalAlignment _horizontalAlignment = HorizontalAlignment.Center;
+
+    [ObservableProperty]
+    private VerticalAlignment _verticalAlignment = VerticalAlignment.Center;
+    
+    [ObservableProperty]
+    private Thickness _margin = new Thickness(0);
+    
+    public PositioningViewModel Position { get; } = new();
 }

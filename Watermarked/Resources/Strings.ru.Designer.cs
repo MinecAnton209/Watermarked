@@ -123,6 +123,15 @@ namespace Watermarked.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Выравнивание:.
+        /// </summary>
+        internal static string WatermarkAlignment_Label {
+            get {
+                return ResourceManager.GetString("WatermarkAlignment_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Цвет:.
         /// </summary>
         internal static string WatermarkColor_Label {

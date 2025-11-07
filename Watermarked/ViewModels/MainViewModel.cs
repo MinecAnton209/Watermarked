@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -25,6 +26,9 @@ public partial class MainViewModel : ViewModelBase
 
     [ObservableProperty]
     private Bitmap? _previewImage;
+    
+    [ObservableProperty]
+    private Size _previewSize;
 
     #endregion
 

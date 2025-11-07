@@ -12,123 +12,136 @@
     <UserControl.Resources>
         <converters:BoolToTextWrappingConverter x:Key="BoolToTextWrappingConv"/>
         <converters:ColorToBrushConverter x:Key="ColorToBrushConv"/>
+        <converters:OpacityValueConverter x:Key="OpacityValueConv"/>
     </UserControl.Resources>
     
     <Grid ColumnDefinitions="2*, 5*, 3*">
         
-        <Border Grid.Column="0"
-                Background="#2E2E2E"
-                BorderBrush="#1C1C1C"
-                BorderThickness="0 0 1 0">
+        <Border Grid.Column="0" Background="#2E2E2E" BorderBrush="#1C1C1C" BorderThickness="0 0 1 0">
             <DockPanel Margin="10">
-                <Border DockPanel.Dock="Top" 
-                        Padding="0 0 0 10" 
-                        Margin="0 0 0 5"
-                        BorderBrush="#444" 
-                        BorderThickness="0 0 0 1">
+                <Border DockPanel.Dock="Top" Padding="0 0 0 10" Margin="0 0 0 5" BorderBrush="#444" BorderThickness="0 0 0 1">
                     <Grid ColumnDefinitions="*,Auto">
-                        <TextBlock Grid.Column="0" 
-                                   Text="{local:Translate FileListHeader}"
-                                   VerticalAlignment="Center" 
-                                   FontSize="16" FontWeight="Medium"/>
-                        <Button Grid.Column="1" 
-                                Content="{local:Translate AddFilesButton_Content}"
-                                Command="{Binding AddFilesCommand}"
-                                CommandParameter="{Binding $parent[Window]}"/>
+                        <TextBlock Grid.Column="0" Text="{local:Translate FileListHeader}" VerticalAlignment="Center" FontSize="16" FontWeight="Medium"/>
+                        <Button Grid.Column="1" Content="{local:Translate AddFilesButton_Content}" Command="{Binding AddFilesCommand}" CommandParameter="{Binding $parent[Window]}"/>
                     </Grid>
                 </Border>
-                
-                <Button DockPanel.Dock="Bottom" 
-                        Margin="0 10 0 0"
-                        Content="{local:Translate ClearListButton_Content}"
-                        Command="{Binding ClearListCommand}"
-                        HorizontalAlignment="Stretch"/>
-                
-                <ListBox ItemsSource="{Binding Files}"
-                         SelectedItem="{Binding SelectedFile, Mode=TwoWay}"/>
+                <Button DockPanel.Dock="Bottom" Margin="0 10 0 0" Content="{local:Translate ClearListButton_Content}" Command="{Binding ClearListCommand}" HorizontalAlignment="Stretch"/>
+                <ListBox ItemsSource="{Binding Files}" SelectedItem="{Binding SelectedFile, Mode=TwoWay}"/>
             </DockPanel>
         </Border>
-
+        
         <Border Grid.Column="1" Background="#383838">
             <Grid>
-                <TextBlock Text="{local:Translate Preview_SelectFile}"
-                           Foreground="Gray" FontSize="18"
-                           HorizontalAlignment="Center" VerticalAlignment="Center"
-                           IsVisible="{Binding SelectedFile, Converter={x:Static ObjectConverters.IsNull}}"/>
+                <TextBlock Text="{local:Translate Preview_SelectFile}" Foreground="Gray" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" IsVisible="{Binding SelectedFile, Converter={x:Static ObjectConverters.IsNull}}"/>
                 
-                <DockPanel Margin="15"
-                           IsVisible="{Binding SelectedFile, Converter={x:Static ObjectConverters.IsNotNull}}">
-                    
-                    <TextBlock DockPanel.Dock="Top"
-                               Text="{Binding SelectedFile}"
-                               FontWeight="Bold"
-                               TextTrimming="CharacterEllipsis"
-                               Margin="0 0 0 10"/>
+                <DockPanel Margin="15" IsVisible="{Binding SelectedFile, Converter={x:Static ObjectConverters.IsNotNull}}">
+                    <TextBlock DockPanel.Dock="Top" Text="{Binding SelectedFile}" FontWeight="Bold" TextTrimming="CharacterEllipsis" Margin="0 0 0 10"/>
                     
                     <Border Background="#222" CornerRadius="4">
-                        <Grid>
-                            <Image Source="{Binding PreviewImage}"
-                                   Stretch="Uniform"
-                                   IsVisible="{Binding IsImageSelected}"/>
+                        <Grid Name="PreviewContainer" HorizontalAlignment="Center" VerticalAlignment="Center" SizeChanged="OnPreviewSizeChanged">
+                            <Image Source="{Binding PreviewImage}" Stretch="Uniform" IsVisible="{Binding IsImageSelected}"/>
+                            <TextBlock Text="Предпросмотр для этого типа файла не поддерживается" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Gray" IsVisible="{Binding !IsImageSelected}"/>
                             
-                            <TextBlock Text="Предпросмотр для этого типа файла не поддерживается"
-                                       HorizontalAlignment="Center" VerticalAlignment="Center"
-                                       Foreground="Gray" IsVisible="{Binding !IsImageSelected}"/>
-                            
-                            <TextBlock Text="{Binding Settings.WatermarkText}"
+                            <TextBlock Name="WatermarkTextBlock"
+                                       Text="{Binding Settings.WatermarkText}"
                                        IsVisible="{Binding IsImageSelected}"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="{Binding Settings.Position.HorizontalAlignment}"
+                                       VerticalAlignment="{Binding Settings.Position.VerticalAlignment}"
+                                       Margin="{Binding Settings.Position.Margin}"
                                        TextAlignment="Center"
                                        Opacity="{Binding Settings.Opacity}"
                                        FontFamily="{Binding Settings.SelectedFontFamily}"
                                        FontSize="{Binding Settings.FontSize}"
                                        Foreground="{Binding Settings.TextColor, Converter={StaticResource ColorToBrushConv}}"
-                                       TextWrapping="{Binding Settings.IsTextWrappingEnabled, Converter={StaticResource BoolToTextWrappingConv}}"/>
+                                       TextWrapping="{Binding Settings.IsTextWrappingEnabled, Converter={StaticResource BoolToTextWrappingConv}}"
+                                       MaxWidth="{Binding #PreviewContainer.Bounds.Width}"
+                                       SizeChanged="OnWatermarkSizeChanged"
+                                       PointerPressed="Watermark_PointerPressed"
+                                       PointerMoved="Watermark_PointerMoved"
+                                       PointerReleased="Watermark_PointerReleased">
+                                <TextBlock.Transitions>
+                                    <Transitions>
+                                        <DoubleTransition Property="Opacity"
+                                                          Duration="0:0:0.25"
+                                                          Easing="CubicEaseOut"/>
+                                    </Transitions>
+                                </TextBlock.Transitions>
+                            </TextBlock>
                         </Grid>
                     </Border>
                 </DockPanel>
             </Grid>
         </Border>
-
-        <Border Grid.Column="2"
-                Background="#2E2E2E"
-                BorderBrush="#1C1C1C"
-                BorderThickness="1 0 0 0">
+        
+        <Border Grid.Column="2" Background="#2E2E2E" BorderBrush="#1C1C1C" BorderThickness="1 0 0 0">
             <DockPanel Margin="10">
-                <TextBlock DockPanel.Dock="Top"
-                           Text="{local:Translate WatermarkSettings_Header}"
-                           FontSize="16" FontWeight="Medium"
-                           Margin="0 0 0 10"/>
+                <TextBlock DockPanel.Dock="Top" Text="{local:Translate WatermarkSettings_Header}" FontSize="16" FontWeight="Medium" Margin="0 0 0 10"/>
                 <TabControl>
                     <TabItem Header="{local:Translate TextWatermark_TabHeader}">
                         <StackPanel Margin="10" Spacing="15">
                             
                             <TextBlock Text="{local:Translate WatermarkText_Label}"/>
                             <TextBox Text="{Binding Settings.WatermarkText, Mode=TwoWay}"/>
-                            <CheckBox Content="{local:Translate WatermarkTextWrapping_Content}"
-                                      IsChecked="{Binding Settings.IsTextWrappingEnabled, Mode=TwoWay}"/>
+                            <CheckBox Content="{local:Translate WatermarkTextWrapping_Content}" IsChecked="{Binding Settings.IsTextWrappingEnabled, Mode=TwoWay}"/>
                             
                             <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto">
                                 <TextBlock Grid.Row="0" Grid.Column="0" Text="{local:Translate WatermarkFontSize_Label}"/>
-                                <NumericUpDown Grid.Row="1" Grid.Column="0" Margin="0 0 10 0"
-                                               Value="{Binding Settings.FontSize, Mode=TwoWay}"
-                                               Minimum="1"/>
+                                <NumericUpDown Grid.Row="1" Grid.Column="0" Margin="0 0 10 0" Value="{Binding Settings.FontSize, Mode=TwoWay}" Minimum="1"/>
                                 
                                 <TextBlock Grid.Row="0" Grid.Column="1" Text="{local:Translate WatermarkColor_Label}"/>
-                                
-                                <ColorPicker Grid.Row="1" Grid.Column="1" Margin="10 0 0 0"
-                                                     Color="{Binding Settings.TextColor, Mode=TwoWay}"/>
+                                <ColorPicker Grid.Row="1" Grid.Column="1" Margin="10 0 0 0" Color="{Binding Settings.TextColor, Mode=TwoWay}"/>
                             </Grid>
                             
-                            <TextBlock Text="{local:Translate WatermarkOpacity_Label}"/>
-                            <Slider Minimum="0" Maximum="1"
-                                    Value="{Binding Settings.Opacity, Mode=TwoWay}"/>
+                            <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                                <TextBlock Grid.Row="0"
+                                           Grid.Column="0"
+                                           Grid.ColumnSpan="2"
+                                           Text="{local:Translate WatermarkOpacity_Label}"
+                                           Margin="0 0 0 5"/>
+
+                                <Slider Grid.Row="1"
+                                        Grid.Column="0"
+                                        Minimum="0"
+                                        Maximum="100"
+                                        Value="{Binding Settings.Opacity, Mode=TwoWay, Converter={StaticResource OpacityValueConv}}"
+                                        VerticalAlignment="Center"/>
+
+                                <NumericUpDown Grid.Row="1"
+                                               Grid.Column="1"
+                                               Width="120"
+                                               Height="38"
+                                               Minimum="0"
+                                               Maximum="100"
+                                               CornerRadius="8"
+                                               Background="#3C3C3C"
+                                               Foreground="White"
+                                               BorderBrush="#666"
+                                               BorderThickness="1.5"
+                                               FontSize="16"
+                                               FontWeight="Medium"
+                                               HorizontalContentAlignment="Center"
+                                               VerticalContentAlignment="Center"
+                                               Padding="6 0"
+                                               FormatString="{}{0:0}%"
+                                               Value="{Binding Settings.Opacity, Mode=TwoWay, Converter={StaticResource OpacityValueConv}}"
+                                               VerticalAlignment="Center"/>
+                            </Grid>
                             
                             <TextBlock Text="{local:Translate WatermarkFontFamily_Label}"/>
-                            <ComboBox ItemsSource="{Binding Settings.SystemFonts}"
-                                      SelectedItem="{Binding Settings.SelectedFontFamily, Mode=TwoWay}"/>
+                            <ComboBox ItemsSource="{Binding Settings.SystemFonts}" SelectedItem="{Binding Settings.SelectedFontFamily, Mode=TwoWay}"/>
                             
+                            <TextBlock Text="{local:Translate WatermarkAlignment_Label}"/>
+                            <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*,*" ColumnSpacing="5" RowSpacing="5">
+                                <Button Grid.Row="0" Grid.Column="0" Command="{Binding Settings.Position.SetAlignmentCommand}" CommandParameter="TopLeft">↖</Button>
+                                <Button Grid.Row="0" Grid.Column="1" Command="{Binding Settings.Position.SetAlignmentCommand}" CommandParameter="TopCenter">↑</Button>
+                                <Button Grid.Row="0" Grid.Column="2" Command="{Binding Settings.Position.SetAlignmentCommand}" CommandParameter="TopRight">↗</Button>
+                                <Button Grid.Row="1" Grid.Column="0" Command="{Binding Settings.Position.SetAlignmentCommand}" CommandParameter="CenterLeft">←</Button>
+                                <Button Grid.Row="1" Grid.Column="1" Command="{Binding Settings.Position.SetAlignmentCommand}" CommandParameter="Center">·</Button>
+                                <Button Grid.Row="1" Grid.Column="2" Command="{Binding Settings.Position.SetAlignmentCommand}" CommandParameter="CenterRight">→</Button>
+                                <Button Grid.Row="2" Grid.Column="0" Command="{Binding Settings.Position.SetAlignmentCommand}" CommandParameter="BottomLeft">↙</Button>
+                                <Button Grid.Row="2" Grid.Column="1" Command="{Binding Settings.Position.SetAlignmentCommand}" CommandParameter="BottomCenter">↓</Button>
+                                <Button Grid.Row="2" Grid.Column="2" Command="{Binding Settings.Position.SetAlignmentCommand}" CommandParameter="BottomRight">↘</Button>
+                            </Grid>
                         </StackPanel>
                     </TabItem>
                     
