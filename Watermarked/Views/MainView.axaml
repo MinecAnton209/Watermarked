@@ -76,6 +76,32 @@
         <Border Grid.Column="2" Background="#2E2E2E" BorderBrush="#1C1C1C" BorderThickness="1 0 0 0">
             <DockPanel Margin="10">
                 <TextBlock DockPanel.Dock="Top" Text="{local:Translate WatermarkSettings_Header}" FontSize="16" FontWeight="Medium" Margin="0 0 0 10"/>
+                
+                <StackPanel DockPanel.Dock="Top" Spacing="10" Margin="0 10 0 15">
+                    <TextBlock Text="{local:Translate Templates_Header}" FontWeight="Medium"/>
+                    
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                        <ComboBox Grid.Column="0"
+                                  ItemsSource="{Binding Templates}"
+                                  SelectedItem="{Binding SelectedTemplate, Mode=TwoWay}"
+                                  DisplayMemberBinding="{Binding Name}"
+                                  PlaceholderText="Select a template..."/>
+                        <Button Grid.Column="1" 
+                                Content="{local:Translate DeleteTemplate_Button}"
+                                Command="{Binding DeleteTemplateCommand}"/>
+                    </Grid>
+        
+                    <TextBlock Text="{local:Translate TemplateName_Label}"/>
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                        <TextBox Grid.Column="0" Text="{Binding NewTemplateName, Mode=TwoWay}"/>
+                        <Button Grid.Column="1" 
+                                Content="{local:Translate SaveTemplate_Button}"
+                                Command="{Binding SaveTemplateCommand}"/>
+                    </Grid>
+                    
+                    <Separator Margin="0 10"/>
+                </StackPanel>
+                
                 <TabControl>
                     <TabItem Header="{local:Translate TextWatermark_TabHeader}">
                         <StackPanel Margin="10" Spacing="15">

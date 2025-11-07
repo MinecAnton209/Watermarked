@@ -78,6 +78,15 @@ namespace Watermarked.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        internal static string DeleteTemplate_Button {
+            get {
+                return ResourceManager.GetString("DeleteTemplate_Button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File List.
         /// </summary>
         internal static string FileListHeader {
@@ -110,6 +119,33 @@ namespace Watermarked.Resources {
         internal static string Preview_SelectFile {
             get {
                 return ResourceManager.GetString("Preview_SelectFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        internal static string SaveTemplate_Button {
+            get {
+                return ResourceManager.GetString("SaveTemplate_Button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Template Name:.
+        /// </summary>
+        internal static string TemplateName_Label {
+            get {
+                return ResourceManager.GetString("TemplateName_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Templates.
+        /// </summary>
+        internal static string Templates_Header {
+            get {
+                return ResourceManager.GetString("Templates_Header", resourceCulture);
             }
         }
         

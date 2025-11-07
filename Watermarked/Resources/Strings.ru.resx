@@ -63,4 +63,16 @@
     <data name="WatermarkAlignment_Label" xml:space="preserve">
         <value>Выравнивание:</value>
     </data>
+    <data name="DeleteTemplate_Button" xml:space="preserve">
+        <value>Удалить</value>
+    </data>
+    <data name="Templates_Header" xml:space="preserve">
+        <value>Шаблоны</value>
+    </data>
+    <data name="TemplateName_Label" xml:space="preserve">
+        <value>Имя шаблона:</value>
+    </data>
+    <data name="SaveTemplate_Button" xml:space="preserve">
+        <value>Сохранить</value>
+    </data>
 </root>
