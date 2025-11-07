@@ -22,11 +22,12 @@
         <value>Список файлов</value>
     </data>
     <data name="AddFilesButton_Content" xml:space="preserve">
-        <value>Добавить файлы...
-</value>
+        <value>Добавить файлы...</value>
     </data>
     <data name="ClearListButton_Content" xml:space="preserve">
-        <value>Очистить список
-</value>
+        <value>Очистить список</value>
+    </data>
+    <data name="Preview_SelectFile" xml:space="preserve">
+        <value>Выберите файл для предпросмотра</value>
     </data>
 </root>

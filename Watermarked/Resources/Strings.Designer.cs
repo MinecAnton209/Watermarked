@@ -60,8 +60,7 @@ namespace Watermarked.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add Files...
-        ///.
+        ///   Looks up a localized string similar to Add Files....
         /// </summary>
         internal static string AddFilesButton_Content {
             get {
@@ -70,8 +69,7 @@ namespace Watermarked.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Clear List
-        ///.
+        ///   Looks up a localized string similar to Clear List.
         /// </summary>
         internal static string ClearListButton_Content {
             get {
@@ -85,6 +83,15 @@ namespace Watermarked.Resources {
         internal static string FileListHeader {
             get {
                 return ResourceManager.GetString("FileListHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a file to see a preview.
+        /// </summary>
+        internal static string Preview_SelectFile {
+            get {
+                return ResourceManager.GetString("Preview_SelectFile", resourceCulture);
             }
         }
     }

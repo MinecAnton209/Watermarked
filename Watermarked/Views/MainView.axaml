@@ -36,18 +36,36 @@
                         Command="{Binding ClearListCommand}"
                         HorizontalAlignment="Stretch"/>
 
-                <ListBox ItemsSource="{Binding Files}">
+                <ListBox ItemsSource="{Binding Files}"
+                         SelectedItem="{Binding SelectedFile, Mode=TwoWay}">
                 </ListBox>
             </DockPanel>
         </Border>
 
-        <Border Grid.Column="1" 
-                Background="#383838">
-            <TextBlock Text="Область предпросмотра" 
-                       Foreground="White"
-                       FontSize="16"
-                       HorizontalAlignment="Center" 
-                       VerticalAlignment="Center"/>
+        <Border Grid.Column="1" Background="#383838">
+            <Grid>
+                <TextBlock Text="{local:Translate Preview_SelectFile}"
+                           Foreground="Gray" FontSize="18"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"
+                           IsVisible="{Binding SelectedFile, Converter={x:Static ObjectConverters.IsNull}}"/>
+
+                <DockPanel Margin="15"
+                           IsVisible="{Binding SelectedFile, Converter={x:Static ObjectConverters.IsNotNull}}">
+
+                    <TextBlock DockPanel.Dock="Top"
+                               Text="{Binding SelectedFile}"
+                               FontWeight="Bold"
+                               TextTrimming="CharacterEllipsis"
+                               Margin="0 0 0 10"/>
+
+                    <Border Background="#222" CornerRadius="4">
+                        <TextBlock Text="{Binding SelectedFile}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Foreground="White"/>
+                    </Border>
+                </DockPanel>
+            </Grid>
         </Border>
 
         <Border Grid.Column="2" 
