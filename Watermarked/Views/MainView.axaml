@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:Watermarked.ViewModels"
+             xmlns:local="using:Watermarked.Localisation"
              mc:Ignorable="d" d:DesignWidth="1280" d:DesignHeight="720"
              x:Class="Watermarked.Views.MainView"
              x:DataType="vm:MainViewModel">
@@ -12,7 +13,7 @@
                 Background="#2E2E2E" 
                 BorderBrush="#1C1C1C" 
                 BorderThickness="0 0 1 0">
-            <TextBlock Text="Список файлов" 
+            <TextBlock Text="{local:Translate FileListHeader}" 
                        Foreground="White"
                        FontSize="16"
                        HorizontalAlignment="Center" 
