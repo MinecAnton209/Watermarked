@@ -54,4 +54,10 @@
     <data name="WatermarkColor_Label" xml:space="preserve">
         <value>Цвет:</value>
     </data>
+    <data name="WatermarkOpacity_Label" xml:space="preserve">
+        <value>Прозрачность:</value>
+    </data>
+    <data name="WatermarkFontFamily_Label" xml:space="preserve">
+        <value>Шрифт:</value>
+    </data>
 </root>

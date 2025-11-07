@@ -132,11 +132,29 @@ namespace Watermarked.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Font:.
+        /// </summary>
+        internal static string WatermarkFontFamily_Label {
+            get {
+                return ResourceManager.GetString("WatermarkFontFamily_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Font Size:.
         /// </summary>
         internal static string WatermarkFontSize_Label {
             get {
                 return ResourceManager.GetString("WatermarkFontSize_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Opacity:.
+        /// </summary>
+        internal static string WatermarkOpacity_Label {
+            get {
+                return ResourceManager.GetString("WatermarkOpacity_Label", resourceCulture);
             }
         }
         

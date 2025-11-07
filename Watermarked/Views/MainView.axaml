@@ -79,8 +79,9 @@
                                        IsVisible="{Binding IsImageSelected}"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
-                                       Opacity="0.6"
                                        TextAlignment="Center"
+                                       Opacity="{Binding Settings.Opacity}"
+                                       FontFamily="{Binding Settings.SelectedFontFamily}"
                                        FontSize="{Binding Settings.FontSize}"
                                        Foreground="{Binding Settings.TextColor, Converter={StaticResource ColorToBrushConv}}"
                                        TextWrapping="{Binding Settings.IsTextWrappingEnabled, Converter={StaticResource BoolToTextWrappingConv}}"/>
@@ -119,6 +120,14 @@
                                 <ColorPicker Grid.Row="1" Grid.Column="1" Margin="10 0 0 0"
                                                      Color="{Binding Settings.TextColor, Mode=TwoWay}"/>
                             </Grid>
+                            
+                            <TextBlock Text="{local:Translate WatermarkOpacity_Label}"/>
+                            <Slider Minimum="0" Maximum="1"
+                                    Value="{Binding Settings.Opacity, Mode=TwoWay}"/>
+                            
+                            <TextBlock Text="{local:Translate WatermarkFontFamily_Label}"/>
+                            <ComboBox ItemsSource="{Binding Settings.SystemFonts}"
+                                      SelectedItem="{Binding Settings.SelectedFontFamily, Mode=TwoWay}"/>
                             
                         </StackPanel>
                     </TabItem>

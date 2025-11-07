@@ -54,4 +54,10 @@
     <data name="WatermarkColor_Label" xml:space="preserve">
         <value>Color:</value>
     </data>
+    <data name="WatermarkOpacity_Label" xml:space="preserve">
+        <value>Opacity:</value>
+    </data>
+    <data name="WatermarkFontFamily_Label" xml:space="preserve">
+        <value>Font:</value>
+    </data>
 </root>

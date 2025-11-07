@@ -1,4 +1,6 @@
-﻿using Avalonia.Media;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Avalonia.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace Watermarked.ViewModels;
@@ -15,5 +17,19 @@ public partial class WatermarkSettingsViewModel : ViewModelBase
     private Color _textColor = Colors.White;
     
     [ObservableProperty]
-    private bool _isTextWrappingEnabled = false;
+    private bool _isTextWrappingEnabled = true;
+    
+    [ObservableProperty]
+    private FontFamily _selectedFontFamily;
+
+    [ObservableProperty]
+    private double _opacity = 0.6;
+    
+    public IEnumerable<FontFamily> SystemFonts { get; }
+    public WatermarkSettingsViewModel()
+    {
+        SystemFonts = FontManager.Current.SystemFonts;
+        
+        _selectedFontFamily = SystemFonts.FirstOrDefault() ?? FontFamily.Default;
+    }
 }
