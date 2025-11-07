@@ -77,15 +77,29 @@
             </Grid>
         </Border>
 
-        <Border Grid.Column="2" 
-                Background="#2E2E2E" 
-                BorderBrush="#1C1C1C" 
+        <Border Grid.Column="2"
+                Background="#2E2E2E"
+                BorderBrush="#1C1C1C"
                 BorderThickness="1 0 0 0">
-            <TextBlock Text="Панель настроек" 
-                       Foreground="White"
-                       FontSize="16"
-                       HorizontalAlignment="Center" 
-                       VerticalAlignment="Center"/>
+            <DockPanel Margin="10">
+                <TextBlock DockPanel.Dock="Top"
+                           Text="{local:Translate WatermarkSettings_Header}"
+                           FontSize="16" FontWeight="Medium"
+                           Margin="0 0 0 10"/>
+
+                <TabControl>
+                    <TabItem Header="{local:Translate TextWatermark_TabHeader}">
+                        <StackPanel Margin="10" Spacing="10">
+                            <TextBlock Text="{local:Translate WatermarkText_Label}"/>
+                            <TextBox Text="{Binding Settings.WatermarkText, Mode=TwoWay}"/>
+                        </StackPanel>
+                    </TabItem>
+            
+                    <TabItem Header="{local:Translate ImageWatermark_TabHeader}">
+                        <TextBlock Text="Настройки для изображения..." Margin="10"/>
+                    </TabItem>
+                </TabControl>
+            </DockPanel>
         </Border>
         
     </Grid>

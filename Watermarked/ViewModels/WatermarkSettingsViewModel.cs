@@ -1,6 +1,9 @@
-﻿namespace Watermarked.ViewModels;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-public class WatermarkSettingsViewModel
+namespace Watermarked.ViewModels;
+
+public partial class WatermarkSettingsViewModel : ViewModelBase
 {
-    
+    [ObservableProperty]
+    private string _watermarkText = "Your Watermark";
 }

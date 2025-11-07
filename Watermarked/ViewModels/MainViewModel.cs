@@ -39,6 +39,8 @@ public partial class MainViewModel : ViewModelBase
     #region Collections
 
     public ObservableCollection<string> Files { get; } = new();
+    
+    public WatermarkSettingsViewModel Settings { get; } = new();
 
     #endregion
 
