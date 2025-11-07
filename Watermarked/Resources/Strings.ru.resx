@@ -75,4 +75,22 @@
     <data name="SaveTemplate_Button" xml:space="preserve">
         <value>Сохранить</value>
     </data>
+    <data name="SaveFile_Button" xml:space="preserve">
+        <value>Сохранить файл...</value>
+    </data>
+    <data name="SaveFilePicker_Title" xml:space="preserve">
+        <value>Сохранить обработанный файл</value>
+    </data>
+    <data name="ImageWatermark_SelectButton" xml:space="preserve">
+        <value>Выбрать изображение...</value>
+    </data>
+    <data name="ImageWatermark_ScaleLabel" xml:space="preserve">
+        <value>Масштаб:</value>
+    </data>
+    <data name="ErrorDialog_Title" xml:space="preserve">
+        <value>An error occurred while saving the file:</value>
+    </data>
+    <data name="SaveFileError_Message" xml:space="preserve">
+        <value>Произошла ошибка при сохранении файла:</value>
+    </data>
 </root>

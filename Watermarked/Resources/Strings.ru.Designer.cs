@@ -87,11 +87,38 @@ namespace Watermarked.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occurred while saving the file:.
+        /// </summary>
+        internal static string ErrorDialog_Title {
+            get {
+                return ResourceManager.GetString("ErrorDialog_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Список файлов.
         /// </summary>
         internal static string FileListHeader {
             get {
                 return ResourceManager.GetString("FileListHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Масштаб:.
+        /// </summary>
+        internal static string ImageWatermark_ScaleLabel {
+            get {
+                return ResourceManager.GetString("ImageWatermark_ScaleLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Выбрать изображение....
+        /// </summary>
+        internal static string ImageWatermark_SelectButton {
+            get {
+                return ResourceManager.GetString("ImageWatermark_SelectButton", resourceCulture);
             }
         }
         
@@ -119,6 +146,33 @@ namespace Watermarked.Resources {
         internal static string Preview_SelectFile {
             get {
                 return ResourceManager.GetString("Preview_SelectFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Сохранить файл....
+        /// </summary>
+        internal static string SaveFile_Button {
+            get {
+                return ResourceManager.GetString("SaveFile_Button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Произошла ошибка при сохранении файла:.
+        /// </summary>
+        internal static string SaveFileError_Message {
+            get {
+                return ResourceManager.GetString("SaveFileError_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Сохранить обработанный файл.
+        /// </summary>
+        internal static string SaveFilePicker_Title {
+            get {
+                return ResourceManager.GetString("SaveFilePicker_Title", resourceCulture);
             }
         }
         
