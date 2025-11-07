@@ -9,15 +9,36 @@
              x:DataType="vm:MainViewModel">
     
     <Grid ColumnDefinitions="2*, 5*, 3*">
-        <Border Grid.Column="0" 
-                Background="#2E2E2E" 
-                BorderBrush="#1C1C1C" 
+        <Border Grid.Column="0"
+                Background="#2E2E2E"
+                BorderBrush="#1C1C1C"
                 BorderThickness="0 0 1 0">
-            <TextBlock Text="{local:Translate FileListHeader}" 
-                       Foreground="White"
-                       FontSize="16"
-                       HorizontalAlignment="Center" 
-                       VerticalAlignment="Center"/>
+            <DockPanel Margin="10">
+                <Border DockPanel.Dock="Top" 
+                        Padding="0 0 0 10" 
+                        Margin="0 0 0 5"
+                        BorderBrush="#444" 
+                        BorderThickness="0 0 0 1">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <TextBlock Grid.Column="0" 
+                                   Text="{local:Translate FileListHeader}"
+                                   VerticalAlignment="Center" 
+                                   FontSize="16" FontWeight="Medium"/>
+                        <Button Grid.Column="1" 
+                                Content="{local:Translate AddFilesButton_Content}"
+                                Command="{Binding AddFilesCommand}"/>
+                    </Grid>
+                </Border>
+
+                <Button DockPanel.Dock="Bottom" 
+                        Margin="0 10 0 0"
+                        Content="{local:Translate ClearListButton_Content}"
+                        Command="{Binding ClearListCommand}"
+                        HorizontalAlignment="Stretch"/>
+
+                <ListBox ItemsSource="{Binding Files}">
+                </ListBox>
+            </DockPanel>
         </Border>
 
         <Border Grid.Column="1" 

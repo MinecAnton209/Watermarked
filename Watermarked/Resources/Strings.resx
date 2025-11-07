@@ -21,4 +21,12 @@
     <data name="FileListHeader" xml:space="preserve">
         <value>File List</value>
     </data>
+    <data name="AddFilesButton_Content" xml:space="preserve">
+        <value>Add Files...
+</value>
+    </data>
+    <data name="ClearListButton_Content" xml:space="preserve">
+        <value>Clear List
+</value>
+    </data>
 </root>

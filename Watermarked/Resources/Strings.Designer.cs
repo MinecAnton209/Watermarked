@@ -60,6 +60,26 @@ namespace Watermarked.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Files...
+        ///.
+        /// </summary>
+        internal static string AddFilesButton_Content {
+            get {
+                return ResourceManager.GetString("AddFilesButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear List
+        ///.
+        /// </summary>
+        internal static string ClearListButton_Content {
+            get {
+                return ResourceManager.GetString("ClearListButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File List.
         /// </summary>
         internal static string FileListHeader {
