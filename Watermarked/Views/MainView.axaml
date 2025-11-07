@@ -59,10 +59,18 @@
                                Margin="0 0 0 10"/>
 
                     <Border Background="#222" CornerRadius="4">
-                        <TextBlock Text="{Binding SelectedFile}"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Foreground="White"/>
+                        
+                        <Grid>
+                            <Image Source="{Binding PreviewImage}"
+                                   Stretch="Uniform"
+                                   IsVisible="{Binding IsImageSelected}"/>
+
+                            <TextBlock Text="Предпросмотр для этого типа файла не поддерживается"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="Gray"
+                                       IsVisible="{Binding !IsImageSelected}"/>
+                        </Grid>
                     </Border>
                 </DockPanel>
             </Grid>
