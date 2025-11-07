@@ -45,4 +45,13 @@
     <data name="WatermarkText_Label" xml:space="preserve">
         <value>Text:</value>
     </data>
+    <data name="WatermarkTextWrapping_Content" xml:space="preserve">
+        <value>Wrap Text</value>
+    </data>
+    <data name="WatermarkFontSize_Label" xml:space="preserve">
+        <value>Font Size:</value>
+    </data>
+    <data name="WatermarkColor_Label" xml:space="preserve">
+        <value>Color:</value>
+    </data>
 </root>

@@ -123,6 +123,24 @@ namespace Watermarked.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Цвет:.
+        /// </summary>
+        internal static string WatermarkColor_Label {
+            get {
+                return ResourceManager.GetString("WatermarkColor_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Размер шрифта:.
+        /// </summary>
+        internal static string WatermarkFontSize_Label {
+            get {
+                return ResourceManager.GetString("WatermarkFontSize_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Настройки водяного знака.
         /// </summary>
         internal static string WatermarkSettings_Header {
@@ -137,6 +155,15 @@ namespace Watermarked.Resources {
         internal static string WatermarkText_Label {
             get {
                 return ResourceManager.GetString("WatermarkText_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Переносить текст.
+        /// </summary>
+        internal static string WatermarkTextWrapping_Content {
+            get {
+                return ResourceManager.GetString("WatermarkTextWrapping_Content", resourceCulture);
             }
         }
     }

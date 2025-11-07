@@ -4,11 +4,18 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:Watermarked.ViewModels"
              xmlns:local="using:Watermarked.Localisation"
+             xmlns:converters="using:Watermarked.Converters"
              mc:Ignorable="d" d:DesignWidth="1280" d:DesignHeight="720"
              x:Class="Watermarked.Views.MainView"
              x:DataType="vm:MainViewModel">
     
+    <UserControl.Resources>
+        <converters:BoolToTextWrappingConverter x:Key="BoolToTextWrappingConv"/>
+        <converters:ColorToBrushConverter x:Key="ColorToBrushConv"/>
+    </UserControl.Resources>
+    
     <Grid ColumnDefinitions="2*, 5*, 3*">
+        
         <Border Grid.Column="0"
                 Background="#2E2E2E"
                 BorderBrush="#1C1C1C"
@@ -30,16 +37,15 @@
                                 CommandParameter="{Binding $parent[Window]}"/>
                     </Grid>
                 </Border>
-
+                
                 <Button DockPanel.Dock="Bottom" 
                         Margin="0 10 0 0"
                         Content="{local:Translate ClearListButton_Content}"
                         Command="{Binding ClearListCommand}"
                         HorizontalAlignment="Stretch"/>
-
+                
                 <ListBox ItemsSource="{Binding Files}"
-                         SelectedItem="{Binding SelectedFile, Mode=TwoWay}">
-                </ListBox>
+                         SelectedItem="{Binding SelectedFile, Mode=TwoWay}"/>
             </DockPanel>
         </Border>
 
@@ -49,28 +55,35 @@
                            Foreground="Gray" FontSize="18"
                            HorizontalAlignment="Center" VerticalAlignment="Center"
                            IsVisible="{Binding SelectedFile, Converter={x:Static ObjectConverters.IsNull}}"/>
-
+                
                 <DockPanel Margin="15"
                            IsVisible="{Binding SelectedFile, Converter={x:Static ObjectConverters.IsNotNull}}">
-
+                    
                     <TextBlock DockPanel.Dock="Top"
                                Text="{Binding SelectedFile}"
                                FontWeight="Bold"
                                TextTrimming="CharacterEllipsis"
                                Margin="0 0 0 10"/>
-
+                    
                     <Border Background="#222" CornerRadius="4">
-                        
                         <Grid>
                             <Image Source="{Binding PreviewImage}"
                                    Stretch="Uniform"
                                    IsVisible="{Binding IsImageSelected}"/>
-
+                            
                             <TextBlock Text="Предпросмотр для этого типа файла не поддерживается"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       Foreground="Gray" IsVisible="{Binding !IsImageSelected}"/>
+                            
+                            <TextBlock Text="{Binding Settings.WatermarkText}"
+                                       IsVisible="{Binding IsImageSelected}"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
-                                       Foreground="Gray"
-                                       IsVisible="{Binding !IsImageSelected}"/>
+                                       Opacity="0.6"
+                                       TextAlignment="Center"
+                                       FontSize="{Binding Settings.FontSize}"
+                                       Foreground="{Binding Settings.TextColor, Converter={StaticResource ColorToBrushConv}}"
+                                       TextWrapping="{Binding Settings.IsTextWrappingEnabled, Converter={StaticResource BoolToTextWrappingConv}}"/>
                         </Grid>
                     </Border>
                 </DockPanel>
@@ -86,21 +99,35 @@
                            Text="{local:Translate WatermarkSettings_Header}"
                            FontSize="16" FontWeight="Medium"
                            Margin="0 0 0 10"/>
-
                 <TabControl>
                     <TabItem Header="{local:Translate TextWatermark_TabHeader}">
-                        <StackPanel Margin="10" Spacing="10">
+                        <StackPanel Margin="10" Spacing="15">
+                            
                             <TextBlock Text="{local:Translate WatermarkText_Label}"/>
                             <TextBox Text="{Binding Settings.WatermarkText, Mode=TwoWay}"/>
+                            <CheckBox Content="{local:Translate WatermarkTextWrapping_Content}"
+                                      IsChecked="{Binding Settings.IsTextWrappingEnabled, Mode=TwoWay}"/>
+                            
+                            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto">
+                                <TextBlock Grid.Row="0" Grid.Column="0" Text="{local:Translate WatermarkFontSize_Label}"/>
+                                <NumericUpDown Grid.Row="1" Grid.Column="0" Margin="0 0 10 0"
+                                               Value="{Binding Settings.FontSize, Mode=TwoWay}"
+                                               Minimum="1"/>
+                                
+                                <TextBlock Grid.Row="0" Grid.Column="1" Text="{local:Translate WatermarkColor_Label}"/>
+                                
+                                <ColorPicker Grid.Row="1" Grid.Column="1" Margin="10 0 0 0"
+                                                     Color="{Binding Settings.TextColor, Mode=TwoWay}"/>
+                            </Grid>
+                            
                         </StackPanel>
                     </TabItem>
-            
+                    
                     <TabItem Header="{local:Translate ImageWatermark_TabHeader}">
                         <TextBlock Text="Настройки для изображения..." Margin="10"/>
                     </TabItem>
                 </TabControl>
             </DockPanel>
         </Border>
-        
     </Grid>
 </UserControl>
