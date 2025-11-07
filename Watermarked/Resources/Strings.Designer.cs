@@ -87,11 +87,56 @@ namespace Watermarked.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Image.
+        /// </summary>
+        internal static string ImageWatermark_TabHeader {
+            get {
+                return ResourceManager.GetString("ImageWatermark_TabHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select media files.
+        /// </summary>
+        internal static string OpenFilePicker_Title {
+            get {
+                return ResourceManager.GetString("OpenFilePicker_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select a file to see a preview.
         /// </summary>
         internal static string Preview_SelectFile {
             get {
                 return ResourceManager.GetString("Preview_SelectFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text.
+        /// </summary>
+        internal static string TextWatermark_TabHeader {
+            get {
+                return ResourceManager.GetString("TextWatermark_TabHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Watermark Settings.
+        /// </summary>
+        internal static string WatermarkSettings_Header {
+            get {
+                return ResourceManager.GetString("WatermarkSettings_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text:.
+        /// </summary>
+        internal static string WatermarkText_Label {
+            get {
+                return ResourceManager.GetString("WatermarkText_Label", resourceCulture);
             }
         }
     }

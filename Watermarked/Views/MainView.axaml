@@ -26,7 +26,8 @@
                                    FontSize="16" FontWeight="Medium"/>
                         <Button Grid.Column="1" 
                                 Content="{local:Translate AddFilesButton_Content}"
-                                Command="{Binding AddFilesCommand}"/>
+                                Command="{Binding AddFilesCommand}"
+                                CommandParameter="{Binding $parent[Window]}"/>
                     </Grid>
                 </Border>
 
