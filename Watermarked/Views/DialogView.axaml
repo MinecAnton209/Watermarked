@@ -1,0 +1,19 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Watermarked.ViewModels"
+        x:Class="Watermarked.Views.DialogView"
+        x:DataType="vm:DialogViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="{Binding Title}"
+        CanResize="False" SizeToContent="Height" Width="400"
+        WindowStartupLocation="CenterOwner">
+    
+    <Border Padding="20" Background="#3C3C3C">
+        <StackPanel Spacing="15">
+            <TextBlock Text="{Binding Title}" FontSize="18" FontWeight="Bold"/>
+            <TextBlock Text="{Binding Message}" TextWrapping="Wrap"/>
+            <Button Content="OK" Click="OkButton_OnClick" IsDefault="True"
+                    HorizontalAlignment="Right" MinWidth="100"/>
+        </StackPanel>
+    </Border>
+</Window>

@@ -23,6 +23,8 @@ public record ShowErrorDialog(string Title, string Message);
 
 public partial class MainViewModel : ViewModelBase
 {
+    public event Action<string, string>? ShowErrorRequested;
+    
     #region Observable Properties
 
     [ObservableProperty]
@@ -102,10 +104,10 @@ public partial class MainViewModel : ViewModelBase
             }
             catch (Exception e)
             {
-                ShowErrorInteraction.Handle(new ShowErrorDialog(
+                ShowErrorRequested?.Invoke(
                     Resources.Strings.ErrorDialog_Title,
                     $"Failed to load preview image:\n{e.Message}"
-                ));
+                );
             }
         }
     }
@@ -255,8 +257,10 @@ public partial class MainViewModel : ViewModelBase
         }
         catch (Exception e)
         {
-            var errorInfo = new ShowErrorDialog(Resources.Strings.ErrorDialog_Title, $"{Resources.Strings.SaveFileError_Message}\n{e.Message}");
-            ShowErrorInteraction.Handle(errorInfo);
+            ShowErrorRequested?.Invoke(
+                Resources.Strings.ErrorDialog_Title, 
+                $"{Resources.Strings.SaveFileError_Message}\n{e.Message}"
+            );
         }
     }
     
@@ -282,10 +286,10 @@ public partial class MainViewModel : ViewModelBase
             }
             catch (Exception e)
             {
-                ShowErrorInteraction.Handle(new ShowErrorDialog(
+                ShowErrorRequested?.Invoke(
                     Resources.Strings.ErrorDialog_Title,
                     $"Failed to load template '{Path.GetFileName(file)}':\n{e.Message}"
-                ));
+                );
             }
         }
     }

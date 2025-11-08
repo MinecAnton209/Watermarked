@@ -76,7 +76,12 @@
                                    HorizontalAlignment="{Binding Settings.Position.HorizontalAlignment}"
                                    VerticalAlignment="{Binding Settings.Position.VerticalAlignment}"
                                    Margin="{Binding Settings.Position.Margin}"
-                                   Stretch="Uniform">
+                                   Stretch="Uniform"
+       
+                                   PointerPressed="Watermark_PointerPressed"
+                                   PointerMoved="Watermark_PointerMoved"
+                                   PointerReleased="Watermark_PointerReleased">
+       
                                 <Image.Width>
                                     <MultiBinding Converter="{StaticResource ScaleToWidthConv}">
                                         <Binding Path="#PreviewContainer.Bounds.Width"/>
@@ -273,6 +278,18 @@
                                                FormatString="{}{0:0}%"
                                                Value="{Binding Settings.Opacity, Mode=TwoWay, Converter={StaticResource OpacityValueConv}}"
                                                VerticalAlignment="Center"/>
+                            </Grid>
+                            <TextBlock Text="{local:Translate WatermarkAlignment_Label}"/>
+                            <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*,*" ColumnSpacing="5" RowSpacing="5">
+                                <Button Grid.Row="0" Grid.Column="0" Command="{Binding Settings.Position.SetAlignmentCommand}" CommandParameter="TopLeft">↖</Button>
+                                <Button Grid.Row="0" Grid.Column="1" Command="{Binding Settings.Position.SetAlignmentCommand}" CommandParameter="TopCenter">↑</Button>
+                                <Button Grid.Row="0" Grid.Column="2" Command="{Binding Settings.Position.SetAlignmentCommand}" CommandParameter="TopRight">↗</Button>
+                                <Button Grid.Row="1" Grid.Column="0" Command="{Binding Settings.Position.SetAlignmentCommand}" CommandParameter="CenterLeft">←</Button>
+                                <Button Grid.Row="1" Grid.Column="1" Command="{Binding Settings.Position.SetAlignmentCommand}" CommandParameter="Center">·</Button>
+                                <Button Grid.Row="1" Grid.Column="2" Command="{Binding Settings.Position.SetAlignmentCommand}" CommandParameter="CenterRight">→</Button>
+                                <Button Grid.Row="2" Grid.Column="0" Command="{Binding Settings.Position.SetAlignmentCommand}" CommandParameter="BottomLeft">↙</Button>
+                                <Button Grid.Row="2" Grid.Column="1" Command="{Binding Settings.Position.SetAlignmentCommand}" CommandParameter="BottomCenter">↓</Button>
+                                <Button Grid.Row="2" Grid.Column="2" Command="{Binding Settings.Position.SetAlignmentCommand}" CommandParameter="BottomRight">↘</Button>
                             </Grid>
                         </StackPanel>
                     </TabItem>
