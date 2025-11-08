@@ -105,4 +105,13 @@
     <data name="ThemeType_Dark" xml:space="preserve">
         <value>Тёмная</value>
     </data>
+    <data name="MobileTab_Files" xml:space="preserve">
+        <value>Файлы</value>
+    </data>
+    <data name="MobileTab_Preview" xml:space="preserve">
+        <value>Превью</value>
+    </data>
+    <data name="MobileTab_Settings" xml:space="preserve">
+        <value>Настройки</value>
+    </data>
 </root>

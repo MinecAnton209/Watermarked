@@ -4,6 +4,8 @@
              xmlns:views="using:Watermarked.Views"
              x:Class="Watermarked.Views.MainView"
              x:DataType="vm:MainViewModel"
+             xmlns:lucide="using:Lucide.Avalonia"
+             xmlns:local="clr-namespace:Watermarked.Localisation"
              SizeChanged="OnSizeChanged">
 
     <Grid>
@@ -22,25 +24,34 @@
             
             <TabItem>
                 <TabItem.Header>
-                    <TextBlock>Файлы</TextBlock> 
+                    <StackPanel Spacing="4" HorizontalAlignment="Center">
+                        <lucide:LucideIcon Kind="Files" Width="20" Height="20"/>
+                        <TextBlock Text="{local:Translate MobileTab_Files}" FontSize="12"/>
+                    </StackPanel>
                 </TabItem.Header>
                 <views:FileListView DataContext="{Binding}"/>
             </TabItem>
             
             <TabItem IsSelected="True">
                 <TabItem.Header>
-                    <TextBlock>Превью</TextBlock>
+                    <StackPanel Spacing="4" HorizontalAlignment="Center">
+                        <lucide:LucideIcon Kind="Eye" Width="20" Height="20"/>
+                        <TextBlock Text="{local:Translate MobileTab_Preview}" FontSize="12"/>
+                    </StackPanel>
                 </TabItem.Header>
                 <views:PreviewView DataContext="{Binding}"/>
             </TabItem>
             
             <TabItem>
                 <TabItem.Header>
-                    <TextBlock>Настройки</TextBlock>
+                    <StackPanel Spacing="4" HorizontalAlignment="Center">
+                        <lucide:LucideIcon Kind="SlidersHorizontal" Width="20" Height="20"/>
+                        <TextBlock Text="{local:Translate MobileTab_Settings}" FontSize="12"/>
+                    </StackPanel>
                 </TabItem.Header>
                 <views:SettingsView DataContext="{Binding}"/>
             </TabItem>
-            
+    
         </TabControl>
         
     </Grid>

@@ -132,6 +132,33 @@ namespace Watermarked.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Файлы.
+        /// </summary>
+        internal static string MobileTab_Files {
+            get {
+                return ResourceManager.GetString("MobileTab_Files", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Превью.
+        /// </summary>
+        internal static string MobileTab_Preview {
+            get {
+                return ResourceManager.GetString("MobileTab_Preview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Настройки.
+        /// </summary>
+        internal static string MobileTab_Settings {
+            get {
+                return ResourceManager.GetString("MobileTab_Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Выберите медиафайлы.
         /// </summary>
         internal static string OpenFilePicker_Title {
