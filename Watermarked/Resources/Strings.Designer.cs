@@ -213,6 +213,42 @@ namespace Watermarked.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Theme.
+        /// </summary>
+        internal static string ThemeSettings_Header {
+            get {
+                return ResourceManager.GetString("ThemeSettings_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dark.
+        /// </summary>
+        internal static string ThemeType_Dark {
+            get {
+                return ResourceManager.GetString("ThemeType_Dark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Light.
+        /// </summary>
+        internal static string ThemeType_Light {
+            get {
+                return ResourceManager.GetString("ThemeType_Light", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to System.
+        /// </summary>
+        internal static string ThemeType_System {
+            get {
+                return ResourceManager.GetString("ThemeType_System", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Alignment:.
         /// </summary>
         internal static string WatermarkAlignment_Label {

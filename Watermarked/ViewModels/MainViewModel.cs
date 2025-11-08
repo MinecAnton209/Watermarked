@@ -25,6 +25,14 @@ public partial class MainViewModel : ViewModelBase
 {
     public event Action<string, string>? ShowErrorRequested;
     
+    [ObservableProperty]
+    private bool _isDesktopLayoutVisible = true;
+
+    [ObservableProperty]
+    private bool _isMobileLayoutVisible = false;
+    
+    public ThemeViewModel Theme { get; } = new();
+    
     #region Observable Properties
 
     [ObservableProperty]
@@ -379,4 +387,18 @@ public partial class MainViewModel : ViewModelBase
     }
     
     #endregion
+    
+    public void UpdateLayout(double width)
+    {
+        if (width > 700)
+        {
+            IsDesktopLayoutVisible = true;
+            IsMobileLayoutVisible = false;
+        }
+        else
+        {
+            IsDesktopLayoutVisible = false;
+            IsMobileLayoutVisible = true;
+        }
+    }
 }

@@ -93,4 +93,16 @@
     <data name="SaveFileError_Message" xml:space="preserve">
         <value>Ошибка</value>
     </data>
+    <data name="ThemeSettings_Header" xml:space="preserve">
+        <value>Theme</value>
+    </data>
+    <data name="ThemeType_System" xml:space="preserve">
+        <value>System</value>
+    </data>
+    <data name="ThemeType_Light" xml:space="preserve">
+        <value>Light</value>
+    </data>
+    <data name="ThemeType_Dark" xml:space="preserve">
+        <value>Dark</value>
+    </data>
 </root>

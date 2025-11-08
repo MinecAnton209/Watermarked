@@ -1,0 +1,57 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Watermarked.ViewModels"
+             xmlns:local="using:Watermarked.Localisation"
+             xmlns:converters="using:Watermarked.Converters"
+             xmlns:models="using:Watermarked.Models"
+             mc:Ignorable="d"
+             x:Class="Watermarked.Views.PreviewView"
+             x:DataType="vm:MainViewModel">
+    
+    <UserControl.Resources>
+        <converters:BoolToTextWrappingConverter x:Key="BoolToTextWrappingConv"/>
+        <converters:ColorToBrushConverter x:Key="ColorToBrushConv"/>
+        <converters:ComparisonConverter x:Key="ComparisonConv"/>
+        <converters:ScaleToWidthConverter x:Key="ScaleToWidthConv"/>
+    </UserControl.Resources>
+    
+    <Border Background="{DynamicResource SystemControlPageBackgroundAltMediumBrush}"> 
+        <Grid>
+            <TextBlock Text="{local:Translate Preview_SelectFile}" 
+                       Foreground="{DynamicResource TextFillColorSecondaryBrush}" 
+                       FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                       IsVisible="{Binding SelectedFile, Converter={x:Static ObjectConverters.IsNull}}"/>
+            <DockPanel Margin="15" IsVisible="{Binding SelectedFile, Converter={x:Static ObjectConverters.IsNotNull}}">
+                <TextBlock DockPanel.Dock="Top" Text="{Binding SelectedFile}" FontWeight="Bold" TextTrimming="CharacterEllipsis" Margin="0 0 0 10"/>
+                <Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" CornerRadius="4">
+                    <Grid Name="PreviewContainer" HorizontalAlignment="Center" VerticalAlignment="Center" SizeChanged="OnPreviewSizeChanged">
+                        <Image Source="{Binding PreviewImage}" Stretch="Uniform" IsVisible="{Binding IsImageSelected}"/>
+                        <TextBlock Text="Предпросмотр для этого типа файла не поддерживается" 
+                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}" 
+                                   IsVisible="{Binding !IsImageSelected}"/>
+                        
+                        <TextBlock Name="WatermarkTextBlock" Text="{Binding Settings.WatermarkText}" IsVisible="{Binding Settings.WatermarkType, Converter={StaticResource ComparisonConv}, ConverterParameter={x:Static models:WatermarkType.Text}}" HorizontalAlignment="{Binding Settings.Position.HorizontalAlignment}" VerticalAlignment="{Binding Settings.Position.VerticalAlignment}" Margin="{Binding Settings.Position.Margin}" Opacity="{Binding Settings.Opacity}" FontFamily="{Binding Settings.SelectedFontFamily}" FontSize="{Binding Settings.FontSize}" Foreground="{Binding Settings.TextColor, Converter={StaticResource ColorToBrushConv}}" TextWrapping="{Binding Settings.IsTextWrappingEnabled, Converter={StaticResource BoolToTextWrappingConv}}" MaxWidth="{Binding #PreviewContainer.Bounds.Width}" SizeChanged="OnWatermarkSizeChanged" PointerPressed="Watermark_PointerPressed" PointerMoved="Watermark_PointerMoved" PointerReleased="Watermark_PointerReleased">
+                            <TextBlock.Transitions>
+                                <Transitions>
+                                    <DoubleTransition Property="Opacity" Duration="0:0:0.25" Easing="CubicEaseOut"/>
+                                </Transitions>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                        
+                        <Image Source="{Binding Settings.WatermarkPreviewImage}" IsVisible="{Binding Settings.WatermarkType, Converter={StaticResource ComparisonConv}, ConverterParameter={x:Static models:WatermarkType.Image}}" Opacity="{Binding Settings.Opacity}" HorizontalAlignment="{Binding Settings.Position.HorizontalAlignment}" VerticalAlignment="{Binding Settings.Position.VerticalAlignment}" Margin="{Binding Settings.Position.Margin}" Stretch="Uniform" PointerPressed="Watermark_PointerPressed" PointerMoved="Watermark_PointerMoved" PointerReleased="Watermark_PointerReleased">
+                            <Image.Width>
+                                <MultiBinding Converter="{StaticResource ScaleToWidthConv}">
+                                    <Binding Path="#PreviewContainer.Bounds.Width"/>
+                                    <Binding Path="Settings.ImageScale"/>
+                                </MultiBinding>
+                            </Image.Width>
+                        </Image>
+                    </Grid>
+                </Border>
+            </DockPanel>
+        </Grid>
+    </Border>
+    
+</UserControl>

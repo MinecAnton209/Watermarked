@@ -93,4 +93,16 @@
     <data name="SaveFileError_Message" xml:space="preserve">
         <value>Произошла ошибка при сохранении файла:</value>
     </data>
+    <data name="ThemeSettings_Header" xml:space="preserve">
+        <value>Тема</value>
+    </data>
+    <data name="ThemeType_System" xml:space="preserve">
+        <value>Системная</value>
+    </data>
+    <data name="ThemeType_Light" xml:space="preserve">
+        <value>Светлая</value>
+    </data>
+    <data name="ThemeType_Dark" xml:space="preserve">
+        <value>Тёмная</value>
+    </data>
 </root>

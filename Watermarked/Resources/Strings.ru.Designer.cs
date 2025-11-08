@@ -213,6 +213,42 @@ namespace Watermarked.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Тема.
+        /// </summary>
+        internal static string ThemeSettings_Header {
+            get {
+                return ResourceManager.GetString("ThemeSettings_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Тёмная.
+        /// </summary>
+        internal static string ThemeType_Dark {
+            get {
+                return ResourceManager.GetString("ThemeType_Dark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Светлая.
+        /// </summary>
+        internal static string ThemeType_Light {
+            get {
+                return ResourceManager.GetString("ThemeType_Light", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Системная.
+        /// </summary>
+        internal static string ThemeType_System {
+            get {
+                return ResourceManager.GetString("ThemeType_System", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Выравнивание:.
         /// </summary>
         internal static string WatermarkAlignment_Label {
