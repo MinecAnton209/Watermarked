@@ -1,46 +1,102 @@
 ﻿<UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:vm="using:Watermarked.ViewModels"
-             xmlns:local="using:Watermarked.Localisation"
              xmlns:lucide="using:Lucide.Avalonia"
+             xmlns:local="using:Watermarked.Localisation"
+             xmlns:i="using:Avalonia.Input"
              x:Class="Watermarked.Views.FileListView"
              x:DataType="vm:MainViewModel">
-    
+
     <Border Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}" 
             BorderBrush="{DynamicResource SystemControlTransientBorderBrush}" 
             BorderThickness="0 0 1 0">
+        
         <DockPanel Margin="10">
-            <Border DockPanel.Dock="Top" Padding="0 0 0 10" Margin="0 0 0 5" 
-                    BorderBrush="{DynamicResource SystemControlTransientBorderBrush}" 
+
+            <!-- Верхняя панель -->
+            <Border DockPanel.Dock="Top"
+                    Padding="0 0 0 10"
+                    Margin="0 0 0 5"
+                    BorderBrush="{DynamicResource SystemControlTransientBorderBrush}"
                     BorderThickness="0 0 0 1">
                 <Grid ColumnDefinitions="*,Auto">
-                    <TextBlock Grid.Column="0" Text="{local:Translate FileListHeader}" VerticalAlignment="Center" FontSize="16" FontWeight="Medium"/>
-                    
-                    <Button Grid.Column="1" Command="{Binding AddFilesCommand}" CommandParameter="{Binding $parent[Window]}">
+                    <TextBlock Grid.Column="0"
+                               Text="{local:Translate FileListHeader}"
+                               VerticalAlignment="Center"
+                               FontSize="16"
+                               FontWeight="Medium" />
+
+                    <Button Grid.Column="1"
+                            Command="{Binding AddFilesCommand}"
+                            CommandParameter="{Binding $parent[Window]}">
                         <StackPanel Orientation="Horizontal" Spacing="8">
-                            <lucide:LucideIcon Kind="FilePlus" Width="16" Height="16"/>
-                            <TextBlock Text="{local:Translate AddFilesButton_Content}" VerticalAlignment="Center"/>
+                            <lucide:LucideIcon Kind="FilePlus" Width="16" Height="16" />
+                            <TextBlock Text="{local:Translate AddFilesButton_Content}"
+                                       VerticalAlignment="Center" />
                         </StackPanel>
                     </Button>
                 </Grid>
             </Border>
-            
-            <Button DockPanel.Dock="Bottom" Margin="0 10 0 0" Command="{Binding ClearListCommand}" HorizontalAlignment="Stretch">
-                <StackPanel Orientation="Horizontal" Spacing="8">
-                    <lucide:LucideIcon Kind="Trash2" Width="16" Height="16"/>
-                    <TextBlock Text="{local:Translate ClearListButton_Content}" VerticalAlignment="Center"/>
-                </StackPanel>
-            </Button>
-            
-            <Button DockPanel.Dock="Bottom" Command="{Binding SaveFileCommand}" CommandParameter="{Binding $parent[Window]}" HorizontalAlignment="Stretch">
-                <StackPanel Orientation="Horizontal" Spacing="8">
-                    <lucide:LucideIcon Kind="Save" Width="16" Height="16"/>
-                    <TextBlock Text="{local:Translate SaveFile_Button}" VerticalAlignment="Center"/>
-                </StackPanel>
-            </Button>
-            
-            <ListBox ItemsSource="{Binding Files}" SelectedItem="{Binding SelectedFile, Mode=TwoWay}"/>
+
+            <!-- Нижние кнопки -->
+            <StackPanel DockPanel.Dock="Bottom" Spacing="10" Margin="0 10 0 0">
+                <Button Command="{Binding SaveFileCommand}"
+                        CommandParameter="{Binding $parent[Window]}"
+                        HorizontalAlignment="Stretch">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <lucide:LucideIcon Kind="Save" Width="16" Height="16" />
+                        <TextBlock Text="{local:Translate SaveFile_Button}" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+
+                <Button Command="{Binding ClearListCommand}" HorizontalAlignment="Stretch">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <lucide:LucideIcon Kind="Trash2" Width="16" Height="16" />
+                        <TextBlock Text="{local:Translate ClearListButton_Content}" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+
+            <!-- Секция с Drop-зоной -->
+            <Grid>
+
+                <!-- ListBox с файлами -->
+                <ListBox x:Name="FilesListBox"
+                         ItemsSource="{Binding Files}"
+                         SelectedItem="{Binding SelectedFile, Mode=TwoWay}"
+                         Background="Transparent"
+                         BorderThickness="1"
+                         BorderBrush="{DynamicResource SystemControlTransientBorderBrush}"
+                         Padding="10" />
+
+                <!-- Drop-зона поверх ListBox -->
+                <Border x:Name="DropZone"
+                        Background="Transparent"
+                        i:DragDrop.AllowDrop="True"
+                        i:DragDrop.DragEnter="DropZone_DragEnter"
+                        i:DragDrop.DragLeave="DropZone_DragLeave"
+                        i:DragDrop.DragOver="DropZone_DragOver"
+                        i:DragDrop.Drop="DropZone_Drop">
+                    
+                    <!-- Индикатор Drag&Drop -->
+                    <Border x:Name="DropIndicator"
+                            Background="#40007ACC"
+                            BorderBrush="#FF007ACC"
+                            BorderThickness="2"
+                            CornerRadius="8"
+                            IsVisible="False">
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="8">
+                            <lucide:LucideIcon Kind="CloudUpload" Width="48" Height="48"/>
+                            <TextBlock Text="{local:Translate DropFilesHere}"
+                                       FontSize="16"
+                                       Foreground="White"
+                                       HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+                </Border>
+
+            </Grid>
+
         </DockPanel>
     </Border>
-    
 </UserControl>

@@ -114,4 +114,10 @@
     <data name="MobileTab_Settings" xml:space="preserve">
         <value>Settings</value>
     </data>
+    <data name="DropFilesHere" xml:space="preserve">
+        <value>Drag files here</value>
+    </data>
+    <data name="DropError_InvalidFiles" xml:space="preserve">
+        <value>One or more of the dropped files are not valid images and were ignored.</value>
+    </data>
 </root>

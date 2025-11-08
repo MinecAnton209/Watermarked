@@ -5,6 +5,7 @@ namespace Watermarked.Views;
 
 public partial class MainView : UserControl
 {
+    private int _dragDepth = 0;
     
     public MainView()
     {

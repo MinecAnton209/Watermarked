@@ -114,4 +114,10 @@
     <data name="MobileTab_Settings" xml:space="preserve">
         <value>Настройки</value>
     </data>
+    <data name="DropFilesHere" xml:space="preserve">
+        <value>Перетащите файлы сюда</value>
+    </data>
+    <data name="DropError_InvalidFiles" xml:space="preserve">
+        <value>Один или несколько перетащенных файлов не являются изображениями и были проигнорированы.</value>
+    </data>
 </root>

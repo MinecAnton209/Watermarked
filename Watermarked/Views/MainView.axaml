@@ -7,7 +7,6 @@
              xmlns:lucide="using:Lucide.Avalonia"
              xmlns:local="clr-namespace:Watermarked.Localisation"
              SizeChanged="OnSizeChanged">
-
     <Grid>
         
         <Grid ColumnDefinitions="2*, 5*, 3*"

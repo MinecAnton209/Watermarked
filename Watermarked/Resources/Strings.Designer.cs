@@ -87,6 +87,24 @@ namespace Watermarked.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to One or more of the dropped files are not valid images and were ignored..
+        /// </summary>
+        internal static string DropError_InvalidFiles {
+            get {
+                return ResourceManager.GetString("DropError_InvalidFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drag files here.
+        /// </summary>
+        internal static string DropFilesHere {
+            get {
+                return ResourceManager.GetString("DropFilesHere", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
         internal static string ErrorDialog_Title {

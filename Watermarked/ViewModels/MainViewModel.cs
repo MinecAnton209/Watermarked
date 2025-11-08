@@ -401,4 +401,50 @@ public partial class MainViewModel : ViewModelBase
             IsMobileLayoutVisible = true;
         }
     }
+    
+    public void AddDroppedFiles(IEnumerable<string> filePaths)
+    {
+        var validExtensions = new[] { ".png", ".jpg", ".jpeg", ".bmp", ".webp" };
+        var addedFiles = new List<string>();
+        var errorMessages = new List<string>();
+
+        foreach (var path in filePaths)
+        {
+            if (string.IsNullOrEmpty(path)) continue;
+        
+            var extension = Path.GetExtension(path).ToLowerInvariant();
+            if (!validExtensions.Contains(extension))
+            {
+                errorMessages.Add($"File ignored (invalid extension): {Path.GetFileName(path)}");
+                continue;
+            }
+
+            if (Files.Contains(path)) continue;
+
+            try
+            {
+                using var bitmap = new Bitmap(path);
+                
+                Files.Add(path);
+                addedFiles.Add(path);
+            }
+            catch (Exception)
+            {
+                errorMessages.Add($"File ignored (corrupted or invalid format): {Path.GetFileName(path)}");
+            }
+        }
+
+        if (addedFiles.Any())
+        {
+            SelectedFile = addedFiles.Last();
+        }
+    
+        if (errorMessages.Any())
+        {
+            ShowErrorRequested?.Invoke(
+                Resources.Strings.ErrorDialog_Title,
+                string.Join("\n\n", errorMessages)
+            );
+        }
+    }
 }

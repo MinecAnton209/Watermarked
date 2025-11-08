@@ -87,6 +87,24 @@ namespace Watermarked.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Один или несколько перетащенных файлов не являются изображениями и были проигнорированы..
+        /// </summary>
+        internal static string DropError_InvalidFiles {
+            get {
+                return ResourceManager.GetString("DropError_InvalidFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Перетащите файлы сюда.
+        /// </summary>
+        internal static string DropFilesHere {
+            get {
+                return ResourceManager.GetString("DropFilesHere", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occurred while saving the file:.
         /// </summary>
         internal static string ErrorDialog_Title {
